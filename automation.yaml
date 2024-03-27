@@ -1,0 +1,167 @@
+alias: "OpenEpaper - Soptunnor"
+#unique_id: OpenEpaper_el
+trigger:
+  - platform: time
+    at: "04:00:00"
+#condition:
+#  - condition: time
+#    after: "05:45:00"
+#    before: "23:15:00"
+action:
+  - service: open_epaper_link.drawcustom
+    target:
+      entity_id: open_epaper_link.ADD_YOUR_TAG
+    data:
+      background: white
+      dry-run: false
+      ttl: 60
+      rotate: 0
+      payload:
+####################################TABELL######################################
+        - type: line  #FÖRSTA LINJEN RAKT NER
+          fill: black
+          width: 2
+          x_start: 174
+          y_start: 0
+          x_end: 174
+          y_end: 150
+        - type: line  #ANDRA LINJEN RAKT NER
+          fill: black
+          width: 2
+          x_start: 348
+          y_start: 0
+          x_end: 348
+          y_end: 150
+####################################KÄRL 1######################################
+        - type: text                                                #TEXT KÄRL 1
+          value: "Kärl 1"
+          font: ppb.ttf
+          x: 87
+          "y": 30
+          size: 20
+          color: |-
+            {% if states('sensor.soptunna1')  == 'Idag' %}
+            red
+            {% elif states('sensor.soptunna1')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+          anchor: mm
+        - type: icon
+          value: trash-can                                                 #IKON
+          x: 55
+          "y": 40
+          size: 65
+          color: |-
+            {% if states('sensor.soptunna1')  == 'Idag' %}
+            red
+            {% elif states('sensor.soptunna1')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+        - type: text                                                 #TEXT DAGAR
+          value: "{{ states('sensor.soptunna1')}}"
+          font: ppb.ttf
+          x: 87
+          "y": 115
+          size: 20
+          color: |-
+            {% if states('sensor.soptunna1')  == 'Idag' %}
+            red
+            {% elif states('sensor.soptunna1')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+          anchor: mm
+####################################KÄRL 2######################################
+        - type: text                                                #TEXT KÄRL 2
+          value: "Kärl 2"
+          font: ppb.ttf
+          x: 261
+          "y": 30
+          size: 20
+          color: |-
+            {% if states('sensor.soptunna2')  == 'Idag' %}
+            red
+            {% elif states('sensor.soptunna2')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+          anchor: mm
+        - type: icon
+          value: trash-can                                                 #IKON
+          x: 228
+          "y": 40
+          size: 65
+          color: |-
+            {% if states('sensor.soptunna2')  == 'Idag' %}
+            red
+            {% elif states('sensor.soptunna2')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+        - type: text                                                 #TEXT DAGAR
+          value: "{{ states('sensor.soptunna2')}}"
+          font: ppb.ttf
+          x: 261
+          "y": 115
+          size: 20
+          color: |-
+            {% if states('sensor.soptunna2')  == 'Idag' %}
+            red
+            {% elif states('sensor.soptunna2')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+          anchor: mm
+####################################Trädgård####################################
+        - type: text                                              #TEXT TRÄDGÅRD
+          value: "Trädgård"
+          font: ppb.ttf
+          x: 435
+          "y": 30
+          size: 20
+          color: |-
+            {% if states('sensor.tradgardskarl')  == 'Idag' %}
+            red
+            {% elif states('sensor.tradgardskarl')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+          anchor: mm
+        - type: icon
+          value: leaf                                                      #IKON
+          x: 401
+          "y": 40
+          size: 65
+          color: |-
+            {% if states('sensor.tradgardskarl')  == 'Idag' %}
+            red
+            {% elif states('sensor.tradgardskarl')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+        - type: text                                                 #TEXT DAGAR
+          value: "{{ states('sensor.tradgard')}}"
+          font: ppb.ttf
+          x: 435
+          "y": 115
+          size: 20
+          color: |-
+            {% if states('sensor.tradgardskarl')  == 'Idag' %}
+            red
+            {% elif states('sensor.tradgardskarl')  == 'Imorgon' %}
+            red
+            {% else %}
+            black
+            {% endif %}
+          anchor: mm
+mode: single
